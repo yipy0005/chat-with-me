@@ -1,4 +1,5 @@
 import os
+from time import sleep
 
 import discord
 from dotenv import load_dotenv
@@ -38,11 +39,13 @@ async def on_message(message):  # type: ignore
         return
 
     if message.content.lower() == "hello, how are you today?":  # type: ignore
+        sleep(5)
         response = chatgpt_chain.predict(human_input=entry)
         response = response.strip("\n")
     elif "bye" in message.content.lower():  # type: ignore
         response = "Goodbye, I hope you have a great day."
     else:
+        sleep(5)
         response = chatgpt_chain.predict(human_input=message.content)  # type: ignore
         response = response.strip("\n")
 
